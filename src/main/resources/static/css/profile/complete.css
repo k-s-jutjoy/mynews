@@ -1,0 +1,17 @@
+.text {
+  margin: 20px 0 30px;
+  font-size: 1.2rem;
+}
+
+.return_btn-area {
+  text-align: center;
+}
+
+.return_btn {
+  background-color: gray;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
