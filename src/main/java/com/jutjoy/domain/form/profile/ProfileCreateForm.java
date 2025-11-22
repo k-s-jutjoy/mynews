@@ -9,41 +9,50 @@ import lombok.Data;
 @Data
 public class ProfileCreateForm {
 
-    @jakarta.validation.constraints.NotEmpty
-    @jakarta.validation.constraints.Size
+    @NotEmpty
+    @Size
     private String name;
 
-    @jakarta.validation.constraints.NotEmpty
+    @NotEmpty
     private String gender;
 
-    @jakarta.validation.constraints.Size
+    @Size
     private String hobby;
 
-    @jakarta.validation.constraints.Size
+    @Size
     private String introduction;
 
-	public void create(ProfileCreateForm form) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
+//	public void create(ProfileCreateForm form) {
+//		// TODO 自動生成されたメソッド・スタブ
+//		
+//	}
 
-	public Object getName() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
 
-	public Object getGender() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Object getHobby() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getGender() {
+        return this.gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public Object getIntroduction() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getHobby() {
+        return this.hobby;
+    }
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    public String getIntroduction() {
+        return this.introduction;
+    }
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 }

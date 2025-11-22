@@ -1,6 +1,7 @@
 package com.jutjoy.domain.entity.profile;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +19,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "profiles")
-@Data
 @EntityListeners(AuditingEntityListener.class)
 public class Profile {
 
@@ -46,23 +46,25 @@ public class Profile {
     @Column(name = "updated_date")
     private Timestamp updatedDate;
 
-	public void setName(Object name2) {
-		// TODO 自動生成されたメソッド・スタブ
+	public void setName(String name) {
+		this.name=name;
 		
 	}
 
-	public void setGender(Object gender2) {
-		// TODO 自動生成されたメソッド・スタブ
+	public void setGender(String gender) {
+		this.gender=gender;
 		
 	}
 
-	public void setHobby(Object hobby2) {
-		// TODO 自動生成されたメソッド・スタブ
+	public void setHobby(String hobby) {
+		this.hobby=hobby;
 		
 	}
 
-	public void setIntroduction(Object introduction2) {
-		// TODO 自動生成されたメソッド・スタブ
+	public void setIntroduction(String introduction) {
+		this.introduction=introduction;
 		
 	}
+
+
 }
