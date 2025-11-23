@@ -8,13 +8,26 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jutjoy.domain.entity.News;
 import com.jutjoy.domain.form.news.NewsCreateForm;
 import com.jutjoy.domain.service.news.NewsCreateService;
+import com.jutjoy.domain.service.news.NewsListService;
+import com.zaxxer.hikari.util.FastList;
 
 @Controller
 public class NewsController {
+    @Autowired
+    private NewsListService newsListService;
+    @GetMapping("/news/list")
+    public String list(@RequestParam(required = false) String title, Model model) {
 
+        FastList<News> newsList = (FastList<News>) newsListService.list(title);
+        model.addAttribute("newsList", newsList);
+
+        return "news/list";
+    }
     @Autowired
     private NewsCreateService newsCreateService;
 
