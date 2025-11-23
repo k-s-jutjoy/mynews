@@ -66,5 +66,30 @@ public class Profile {
 		
 	}
 
+	public Object getId() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public Object getName() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public Object getGender() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public Object getHobby() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public Object getIntroduction() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 
 }

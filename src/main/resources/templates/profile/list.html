@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール一覧</title>
+</head>
+<body>
+<h1>プロフィール一覧</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>性別</th>
+        <th>趣味</th>
+        <th>自己紹介</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="profile : ${profileList}">
+        <td th:text="${profile.id}"></td>
+        <td th:text="${profile.name}"></td>
+        <td th:text="${profile.gender}"></td>
+        <td th:text="${profile.hobby}"></td>
+        <td th:text="${profile.introduction}"></td>
+        <td>
+            <a th:href="@{/profile/edit(id=${profile.id})}">編集</a> |
+            <form th:action="@{/profile/delete}" method="post" style="display:inline">
+                <input type="hidden" th:name="id" th:value="${profile.id}" />
+                <button type="submit">削除</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<a th:href="@{/profile/create}">新規プロフィール作成</a>
+</body>
+</html>

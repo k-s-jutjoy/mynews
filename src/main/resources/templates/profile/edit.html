@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール編集</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h2>プロフィール編集</h2>
+
+<form th:action="@{/profile/edit}" th:object="${form}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+        <label>名前</label>
+        <input type="text" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+
+    <div>
+        <label>性別</label>
+        <input type="text" th:field="*{gender}">
+        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    </div>
+
+    <div>
+        <label>趣味</label>
+        <input type="text" th:field="*{hobby}">
+        <span th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}"></span>
+    </div>
+
+    <div>
+        <label>自己紹介</label>
+        <textarea th:field="*{introduction}" rows="5" cols="50"></textarea>
+        <span th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}"></span>
+    </div>
+
+    <div>
+        <button type="submit">更新</button>
+    </div>
+</form>
+
+<hr>
+
+<!-- 削除ボタン -->
+<form th:action="@{/profile/delete}" method="post" 
+      onsubmit="return confirm('本当に削除しますか？');">
+    <input type="hidden" name="id" th:value="${form.id}">
+    <button type="submit">削除</button>
+</form>
+
+</body>
+</html>
