@@ -55,4 +55,14 @@ public class News {
 		// TODO 自動生成されたメソッド・スタブ
 		
 	}
+
+	public String getImageName() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	public String getImageName1() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }
