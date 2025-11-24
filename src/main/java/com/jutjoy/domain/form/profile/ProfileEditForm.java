@@ -1,72 +1,25 @@
 package com.jutjoy.domain.form.profile;
 
-import lombok.Data;
-
-@Data
 public class ProfileEditForm {
-
-    private Integer id;
-
-    @jakarta.validation.constraints.NotEmpty
-    @jakarta.validation.constraints.Size(max = 30)
+    private Integer id;  // ←追加
     private String name;
-
-    @jakarta.validation.constraints.NotEmpty
     private String gender;
-
-    @jakarta.validation.constraints.Size(max = 50)
     private String hobby;
-
-    @jakarta.validation.constraints.Size(max = 200)
     private String introduction;
 
-	public String getName() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    // getter / setter
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-	public String getGender() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-	public String getHobby() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
 
-	public String getIntroduction() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getHobby() { return hobby; }
+    public void setHobby(String hobby) { this.hobby = hobby; }
 
-	public Integer getId() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	public void setId(Object id2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-
-	public void setName(Object name2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-
-	public void setGender(Object gender2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-
-	public void setHobby(Object hobby2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
-
-	public void setIntroduction(Object introduction2) {
-		// TODO 自動生成されたメソッド・スタブ
-		
-	}
+    public String getIntroduction() { return introduction; }
+    public void setIntroduction(String introduction) { this.introduction = introduction; }
 }

@@ -2,10 +2,9 @@ package com.jutjoy.domain.service.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.jutjoy.domain.entity.profile.Profile;
-import com.jutjoy.domain.form.profile.ProfileEditForm;
 import com.jutjoy.domain.repository.profile.ProfileRepository;
+import com.jutjoy.domain.form.profile.ProfileEditForm;
 
 @Service
 public class ProfileEditService {
@@ -14,8 +13,8 @@ public class ProfileEditService {
     private ProfileRepository profileRepository;
 
     public void update(ProfileEditForm form) {
-
-        Profile profile = profileRepository.findById(form.getId()).orElse(null);
+        Profile profile = profileRepository.findById(form.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid ID"));
 
         profile.setName(form.getName());
         profile.setGender(form.getGender());

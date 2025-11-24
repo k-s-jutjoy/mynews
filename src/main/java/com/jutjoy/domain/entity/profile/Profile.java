@@ -1,7 +1,6 @@
 package com.jutjoy.domain.entity.profile;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,8 +13,6 @@ import jakarta.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import lombok.Data;
 
 @Entity
 @Table(name = "profiles")
@@ -46,50 +43,61 @@ public class Profile {
     @Column(name = "updated_date")
     private Timestamp updatedDate;
 
-	public void setName(String name) {
-		this.name=name;
-		
-	}
+    // ===== Getter / Setter =====
 
-	public void setGender(String gender) {
-		this.gender=gender;
-		
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setHobby(String hobby) {
-		this.hobby=hobby;
-		
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setIntroduction(String introduction) {
-		this.introduction=introduction;
-		
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Object getId() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Object getName() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getGender() {
+        return gender;
+    }
 
-	public Object getGender() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public Object getHobby() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public String getHobby() {
+        return hobby;
+    }
 
-	public Object getIntroduction() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
 
+    public String getIntroduction() {
+        return introduction;
+    }
 
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Timestamp getRegisteredDate() {
+        return registeredDate;
+    }
+
+    public void setRegisteredDate(Timestamp registeredDate) {
+        this.registeredDate = registeredDate;
+    }
+
+    public Timestamp getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(Timestamp updatedDate) {
+        this.updatedDate = updatedDate;
+    }
 }
