@@ -37,6 +37,13 @@
         <span th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}"></span>
     </div>
 
+	<p class="history_text">編集履歴</p>
+	<ul class="history">
+	    <li th:each="history : ${profile.histories}" class="date"
+	        th:text="${#temporals.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')} + ' : ' + ${history.introduction}">
+	    </li>
+	</ul>
+
     <div>
         <button type="submit">更新</button>
     </div>

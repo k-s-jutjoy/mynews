@@ -108,3 +108,17 @@ input.input-area_file {
 .u-margin_0 {
   margin: 0;
 }
+.history {
+  text-align: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+.history_text {
+  font-size: 1.4rem;
+  margin-top: 30px;
+}
+.date {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}

@@ -12,7 +12,7 @@ public class ProfileFindService {
     private ProfileRepository profileRepository;
 
     public Profile findById(Integer id) {
-        return profileRepository.findById(id)
+        return profileRepository.findByIdWithHistories(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid ID"));
     }
 }

@@ -1,96 +1,47 @@
-/* フォーム全体 */
-.wrapper {
-  width: 700px;
-  padding: 60px 30px;
-  margin: 50px auto;
-  background-color: #fff; /* フォーム部分だけ白背景 */
-  color: #000;            /* 文字色を黒に */
-  border-radius: 10px;    /* 角を丸くして柔らかい印象 */
-  box-shadow: 0 0 10px rgba(0,0,0,0.3); /* 影で浮き上がらせる */
-}
-
-/* フォーム全体のリスト */
 .form-ul {
-  margin: 50px 0 0 0;
+  margin: 50px auto;
   padding-left: 0;
-  list-style: none;
 }
 
-/* 各項目のレイアウト */
 .form-body {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   text-align: left;
   font-size: 1.4rem;
   margin-bottom: 30px;
 }
 
-/* タイトルラベル */
 .title {
   margin: 0;
-  width: 120px;
 }
 
-/* 入力欄 */
+.error_msg {
+  color: tomato;
+}
+
 .input-area {
   width: 500px;
   height: 40px;
   padding: 5px 10px;
   font-size: 1.4rem;
   border-radius: 10px;
-  border: 1px solid #ccc;
-  outline: none;
 }
 
-/* textarea専用 */
 .textarea {
   resize: none;
   width: 500px;
   height: 200px;
 }
 
-/* エラーメッセージ */
-.error_msg {
-  color: tomato;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-/* ボタンエリア */
 .btn-area {
   margin: 20px 0;
-  text-align: right;
 }
 
-/* ボタンデザイン */
 .btn {
   background-color: #398ed3;
-  width: 120px;
+  width: 100px;
   height: 40px;
   font-size: 1.2rem;
   border-radius: 10px;
   color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: #2d72b3;
-}
-
-/* レスポンシブ対応 */
-@media screen and (max-width: 768px) {
-  .wrapper {
-    width: 90%;
-    padding: 40px 20px;
-  }
-
-  .input-area, .textarea {
-    width: 100%;
-  }
-
-  .title {
-    width: 100px;
-  }
 }
