@@ -16,7 +16,7 @@ public class ProfileListService {
     private ProfileRepository profileRepository;
 
     public List<Profile> list() {
-        return StreamSupport.stream(profileRepository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
+        // ID昇順で取得
+        return profileRepository.findAllByOrderByIdAsc();
     }
 }

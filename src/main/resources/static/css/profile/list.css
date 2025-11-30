@@ -1,0 +1,89 @@
+.wrapper {
+	width: 65vw;
+}
+
+.top-area {
+	display: flex;
+	justify-content: space-between;
+}
+
+input.input-search {
+	width: 200px;
+	margin-left: 15px;
+	padding: 10px;
+}
+
+.search-btn {
+	margin-left: 15px;
+	width: 60px;
+	height: 100%;
+}
+
+table {
+	width: 100%;
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+td {
+	text-align: center;
+	height: 80px;
+	padding: 0px;
+	/* 自己紹介など長い文字を折り返す */
+	word-wrap: break-word;
+	max-width: 400px;  /* 必要に応じて列幅を調整 */
+}
+
+.td-title {
+	text-align: left;
+	width: 96px;
+	white-space: nowrap;
+}
+
+.td-contents {
+	text-align: left;
+	width: 496px;
+	white-space: nowrap;
+}
+
+.operation {
+	background-color: #398ed3;
+	width: 65px;
+	height: 40px;
+	padding-top: 5px;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	color: #fff;
+	white-space: nowrap;
+}
+
+.btn {
+	background-color: rgb(255, 0, 0);
+	width: 65px;
+	height: 40px;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	color: #fff;
+	white-space: nowrap;
+}
+
+.action-cell {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	white-space: nowrap;
+	justify-content: center;
+}
+
+button {
+	all: unset;
+}
+
+/* 追加: 自己紹介列専用の省略スタイル */
+.introduction-cell {
+	text-align: left;
+	max-width: 300px;         /* 列幅制御 */
+	white-space: nowrap;      /* 折り返さず1行に */
+	overflow: hidden;         /* はみ出た部分は非表示 */
+	text-overflow: ellipsis;  /* 末尾に「…」を表示 */
+}

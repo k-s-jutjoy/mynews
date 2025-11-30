@@ -1,62 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>プロフィール編集</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/profile/edit.css}">
 </head>
 <body>
+<main layout:fragment="contents">
+    <div class="wrapper">
+        <h1>プロフィール編集</h1>
 
-<h2>プロフィール編集</h2>
+        <!-- プロフィール編集フォーム -->
+        <form th:action="@{/profile/edit}" th:object="${form}" method="post">
+            <!-- ID hidden -->
+            <input type="hidden" th:field="*{id}" />
 
-<form th:action="@{/profile/edit}" th:object="${form}" method="post">
+            <ul class="form-ul">
+                <li>
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error_msg"></p>
+                    <div class="form-body">
+                        <label for="name" class="title">名前</label>
+                        <input type="text" th:field="*{name}" class="input-area">
+                    </div>
+                </li>
+                <li>
+                    <p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="error_msg"></p>
+                    <div class="form-body">
+                        <label for="gender" class="title">性別</label>
+                        <input type="text" th:field="*{gender}" class="input-area">
+                    </div>
+                </li>
+                <li>
+                    <p th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}" class="error_msg"></p>
+                    <div class="form-body">
+                        <label for="hobby" class="title">趣味</label>
+                        <input type="text" th:field="*{hobby}" class="input-area">
+                    </div>
+                </li>
+                <li>
+                    <p th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}" class="error_msg"></p>
+                    <div class="form-body">
+                        <label for="introduction" class="title">自己紹介</label>
+                        <textarea th:field="*{introduction}" class="textarea"></textarea>
+                    </div>
+                </li>
+                <li class="btn-area">
+                    <button type="submit" class="btn">更新</button>
+                </li>
+            </ul>
+        </form>
 
-    <input type="hidden" th:field="*{id}">
+        <!-- 削除ボタン -->
+        <form th:action="@{/profile/delete}" method="post" onsubmit="return confirm('本当に削除しますか？');">
+            <input type="hidden" name="id" th:value="${form.id}">
+            <button class="btn delete-btn">削除</button>
+        </form>
 
-    <div>
-        <label>名前</label>
-        <input type="text" th:field="*{name}">
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <!-- 編集履歴 -->
+        <p class="history_text">編集履歴</p>
+        <ul class="history">
+            <li th:each="history : ${profile.histories}" class="date"
+                th:text="${#temporals.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')} + ' : ' + ${history.introduction}">
+            </li>
+        </ul>
     </div>
-
-    <div>
-        <label>性別</label>
-        <input type="text" th:field="*{gender}">
-        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
-    </div>
-
-    <div>
-        <label>趣味</label>
-        <input type="text" th:field="*{hobby}">
-        <span th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}"></span>
-    </div>
-
-    <div>
-        <label>自己紹介</label>
-        <textarea th:field="*{introduction}" rows="5" cols="50"></textarea>
-        <span th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}"></span>
-    </div>
-
-	<p class="history_text">編集履歴</p>
-	<ul class="history">
-	    <li th:each="history : ${profile.histories}" class="date"
-	        th:text="${#temporals.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')} + ' : ' + ${history.introduction}">
-	    </li>
-	</ul>
-
-    <div>
-        <button type="submit">更新</button>
-    </div>
-</form>
-
-<hr>
-
-<!-- 削除ボタン -->
-<form th:action="@{/profile/delete}" method="post" 
-      onsubmit="return confirm('本当に削除しますか？');">
-    <input type="hidden" name="id" th:value="${form.id}">
-    <button type="submit">削除</button>
-</form>
-
+</main>
 </body>
 </html>
