@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html th:lang="ja"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 </head>
 <body>
-    <header th:fragement="header">
+    <header th:fragment="header">
         <h1 class="header-title">
-            <a href="#">ニュースアプリ</a>
+            <a th:href="@{/profile/list}" style="text-decoration: none; color: inherit;">
+                ニュースアプリ
+            </a>
         </h1>
         <nav>
             <ul class="header-ul">
