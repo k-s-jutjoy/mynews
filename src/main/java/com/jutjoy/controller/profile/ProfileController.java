@@ -1,25 +1,19 @@
 package com.jutjoy.controller.profile;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.jutjoy.domain.entity.profile.Profile;
 import com.jutjoy.domain.form.profile.ProfileCreateForm;
 import com.jutjoy.domain.form.profile.ProfileEditForm;
-import com.jutjoy.domain.service.profile.ProfileCreateService;
-import com.jutjoy.domain.service.profile.ProfileDeleteService;
-import com.jutjoy.domain.service.profile.ProfileEditService;
-import com.jutjoy.domain.service.profile.ProfileFindService;
-import com.jutjoy.domain.service.profile.ProfileListService;
+import com.jutjoy.domain.service.profile.*;
 
 @Controller
 public class ProfileController {
@@ -47,8 +41,7 @@ public class ProfileController {
 
     @PostMapping("/profile/create")
     public String create(@Validated @ModelAttribute("form") ProfileCreateForm form,
-                         BindingResult result,
-                         Model model) {
+                         BindingResult result) {
         if (result.hasErrors()) {
             return "profile/create";
         }
@@ -61,11 +54,18 @@ public class ProfileController {
         return "profile/complete";
     }
 
-    // プロフィール一覧（ID昇順）
+    // ★ プロフィール一覧（ページング対応）
     @GetMapping("/profile/list")
-    public String list(Model model) {
-        List<Profile> profiles = profileListService.list();
-        model.addAttribute("profileList", profiles);
+    public String list(@RequestParam(defaultValue = "1") int page, Model model) {
+
+        int pageSize = 10; // 1ページあたりの件数
+        Pageable pageable = PageRequest.of(page - 1, pageSize); // 0スタート
+        Page<Profile> profilePage = profileListService.list(pageable);
+
+        model.addAttribute("profileList", profilePage.getContent());
+        model.addAttribute("totalPages", profilePage.getTotalPages());
+        model.addAttribute("currentPage", page);
+
         return "profile/list";
     }
 

@@ -1,90 +1,72 @@
-.wrapper {
-	width: 65vw;
-}
-
+/* 上部エリア（新規作成ボタンとページネーション） */
 .top-area {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-input.input-search {
-	width: 200px;
-	margin-left: 15px;
-	padding: 10px;
+/* 新規作成リンク */
+.create-link {
+    background-color: #398ed3;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.search-btn {
-	margin-left: 15px;
-	width: 60px;
-	height: 100%;
+/* ページネーション全体 */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;          /* ボタン間の余白 */
+    flex-wrap: wrap;    /* 狭い画面では改行 */
+    justify-content: flex-end; /* 右寄せ */
+    margin-bottom: 20px;
 }
 
+/* ページリンク */
+.pagination a, .pagination span.page-number {
+    text-decoration: none;
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* 現在のページ */
+.pagination a.active, .pagination span.page-number.active {
+    background-color: #398ed3;
+    color: #fff;
+    border-color: #398ed3;
+    font-weight: bold;
+}
+
+.pagination a.active {
+    background-color: #398ed3;
+    color: #fff;
+    border-color: #398ed3;
+}
+
+/* テーブル */
 table {
-	width: 100%;
-	margin-top: 30px;
-	border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
-td {
-	text-align: center;
-	height: 80px;
-	padding: 0px;
-	/* 自己紹介など長い文字を折り返す */
-	word-wrap: break-word;
-	max-width: 400px;  /* 必要に応じて列幅を調整 */
+td, th {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
 }
 
-.td-title {
-	text-align: left;
-	width: 96px;
-	white-space: nowrap;
-}
-
-.td-contents {
-	text-align: left;
-	width: 496px;
-	white-space: nowrap;
-}
-
-.operation {
-	background-color: #398ed3;
-	width: 65px;
-	height: 40px;
-	padding-top: 5px;
-	font-size: 1.2rem;
-	border-radius: 10px;
-	color: #fff;
-	white-space: nowrap;
-}
-
-.btn {
-	background-color: rgb(255, 0, 0);
-	width: 65px;
-	height: 40px;
-	font-size: 1.2rem;
-	border-radius: 10px;
-	color: #fff;
-	white-space: nowrap;
-}
-
-.action-cell {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	white-space: nowrap;
-	justify-content: center;
-}
-
-button {
-	all: unset;
-}
-
-/* 自己紹介列専用スタイル（全文表示用） */
+/* 自己紹介列 */
 .introduction-cell {
-    max-width: 300px;          /* 列幅を固定 */
-    word-wrap: break-word;     /* 単語途中で折り返す */
-    white-space: normal;       /* 折り返しを有効に */
-    overflow: hidden;
+    max-width: 300px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .abbreviated {
@@ -95,6 +77,36 @@ button {
     display: none;
 }
 
-.action-cell .btn {
-    margin-left: 5px;
+/* 操作列 */
+.action-cell {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+}
+
+/* 編集リンク */
+.operation {
+    background-color: #398ed3;
+    width: 65px;
+    height: 40px;
+    padding-top: 5px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* 削除ボタン */
+.btn {
+    background-color: rgb(255, 0, 0);
+    width: 65px;
+    height: 40px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    border: none;
 }
