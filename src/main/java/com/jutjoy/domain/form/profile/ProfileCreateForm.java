@@ -1,5 +1,6 @@
 package com.jutjoy.domain.form.profile;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -9,18 +10,20 @@ import lombok.Data;
 @Data
 public class ProfileCreateForm {
 
-    @NotEmpty
-    @Size
-    private String name;
+	@NotEmpty(message = "名前を入力してください")
+	@Size(max = 20, message = "名前は20文字以内で入力してください")
+	private String name;
 
-    @NotEmpty
-    private String gender;
+	@NotEmpty(message = "性別を入力してください")
+	@Size(max = 10, message = "性別は10文字以内で入力してください")
+	private String gender;
 
-    @Size
-    private String hobby;
+	@Size(max = 100, message = "趣味は100文字以内で入力してください")
+	private String hobby;
 
-    @Size
-    private String introduction;
+	@NotBlank(message = "自己紹介は必須です")
+	@Size(max = 200, message = "自己紹介は200文字以内で入力してください")
+	private String introduction;
 
 //	public void create(ProfileCreateForm form) {
 //		// TODO 自動生成されたメソッド・スタブ
