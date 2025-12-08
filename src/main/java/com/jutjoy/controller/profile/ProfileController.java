@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;   // ★ 追加
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,12 +55,19 @@ public class ProfileController {
         return "profile/complete";
     }
 
-    // ★ プロフィール一覧（ページング対応）
+    // ★ プロフィール一覧（登録日時の新しい順でページング）
     @GetMapping("/profile/list")
     public String list(@RequestParam(defaultValue = "1") int page, Model model) {
 
         int pageSize = 10; // 1ページあたりの件数
-        Pageable pageable = PageRequest.of(page - 1, pageSize); // 0スタート
+
+        // ★ PageRequest に Sort を追加（registeredDate の新しい順）
+        Pageable pageable = PageRequest.of(
+                page - 1,
+                pageSize,
+                Sort.by(Sort.Direction.DESC, "registeredDate")  // ← ここが追加
+        );
+
         Page<Profile> profilePage = profileListService.list(pageable);
 
         model.addAttribute("profileList", profilePage.getContent());
