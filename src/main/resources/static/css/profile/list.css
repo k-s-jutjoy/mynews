@@ -79,10 +79,19 @@ td, th {
 
 /* 操作列 */
 .action-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.action-wrapper {
     display: flex;
     align-items: center;
-    gap: 4px;
     justify-content: center;
+    gap: 6px; /* 編集 | 削除の間隔 */
+}
+
+.action-cell form {
+    margin: 0;
 }
 
 /* 編集リンク */

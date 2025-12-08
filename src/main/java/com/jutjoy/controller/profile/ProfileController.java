@@ -59,13 +59,13 @@ public class ProfileController {
     @GetMapping("/profile/list")
     public String list(@RequestParam(defaultValue = "1") int page, Model model) {
 
-        int pageSize = 10; // 1ページあたりの件数
+        int pageSize = 7; // 1ページあたりの件数
 
         // ★ PageRequest に Sort を追加（registeredDate の新しい順）
         Pageable pageable = PageRequest.of(
                 page - 1,
                 pageSize,
-                Sort.by(Sort.Direction.DESC, "registeredDate")  // ← ここが追加
+                Sort.by(Sort.Direction.ASC, "id")  // ← ここが追加
         );
 
         Page<Profile> profilePage = profileListService.list(pageable);
