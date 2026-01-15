@@ -119,3 +119,11 @@ td, th {
     cursor: pointer;
     border: none;
 }
+
+.name-cell a {
+    display: inline-block;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+}
+

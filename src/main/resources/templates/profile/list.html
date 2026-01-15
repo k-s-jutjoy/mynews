@@ -1,77 +1,124 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 
 <head>
-	<meta charset="UTF-8">
-	<link th:href="@{/css/profile/list.css}" rel="stylesheet">
-	<title>プロフィール一覧</title>
-	<script>
-		function showFullText(element) {
-			const parent = element.parentElement;
-			parent.querySelector('.abbreviated').style.display = 'none';
-			parent.querySelector('.full-text').style.display = 'inline';
-			element.style.display = 'none';
-		}
-	</script>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/profile/list.css}" rel="stylesheet">
+    <title>プロフィール一覧</title>
+
+    <!-- ▼▼ 全文表示制御用JS（省略表示 → 全表示切替） -->
+    <script>
+        function showFullText(element) {
+            const parent = element.parentElement;
+            parent.querySelector('.abbreviated').style.display = 'none';
+            parent.querySelector('.full-text').style.display = 'inline';
+            element.style.display = 'none';
+        }
+    </script>
 </head>
 
 <body>
-	<main layout:fragment="contents">
-		<div class="top-area">
-			<a th:href="@{/profile/create}" class="create-link">新規プロフィール作成</a>
+<main layout:fragment="contents">
 
-			<!-- ページネーション -->
-			<div class="pagination">
-				<a th:href="@{/profile/list(page=1)}">« 最初</a>
-				<a th:href="@{/profile/list(page=${currentPage - 1})}" th:if="${currentPage > 1}">‹ 前</a>
+    <!-- ▼▼ 新規作成 + ページネーション -->
+    <div class="top-area">
 
-				<span th:each="i : ${#numbers.sequence(1, totalPages)}">
-					<a th:href="@{/profile/list(page=${i})}" th:text="${i}"
-						th:classappend="${i == currentPage} ? ' active'"></a>
-				</span>
+        <!-- ▼ 新規作成ボタン -->
+        <a th:href="@{/profile/create}" class="create-link">新規プロフィール作成</a>
 
-				<a th:href="@{/profile/list(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">次 ›</a>
-				<a th:href="@{/profile/list(page=${totalPages})}">最後 »</a>
-			</div>
-		</div>
+        <!-- ▼▼ ページネーション -->
+        <div class="pagination">
 
-		<table border="1">
-			<tr>
-				<th>ID</th>
-				<th>名前</th>
-				<th>性別</th>
-				<th>趣味</th>
-				<th>自己紹介</th>
-				<th>操作</th>
-			</tr>
+            <a th:href="@{/profile/list(page=1)}">« 最初</a>
 
-			<tr th:each="profile : ${profileList}">
-				<td th:text="${profile.id}"></td>
-				<td th:text="${profile.name}"></td>
-				<td th:text="${profile.gender}"></td>
-				<td th:text="${profile.hobby}"></td>
-				<td class="introduction-cell">
-					<span class="abbreviated"
-						th:text="${profile.introduction.length() > 50 ? profile.introduction.substring(0,50) : profile.introduction}"></span>
-					<a href="#" class="show-more" onclick="showFullText(this); return false;"
-						th:if="${profile.introduction.length() > 50}" style="display:inline;">...</a>
-					<span class="full-text" th:text="${profile.introduction}" style="display:none;"></span>
-				</td>
-				<td class="action-cell">
-					<div class="action-wrapper">
-						<a class="operation" th:href="@{/profile/edit(id=${profile.id})}">編集</a>
-						<span>|</span>
-						<form th:action="@{/profile/delete}" method="post" style="display:inline">
-							<input type="hidden" th:name="id" th:value="${profile.id}" />
-							<button class="btn" type="submit">削除</button>
-						</form>
-					</div>
-				</td>
+            <a th:href="@{/profile/list(page=${currentPage - 1})}"
+               th:if="${currentPage > 1}">‹ 前</a>
 
-			</tr>
-		</table>
-	</main>
+            <!-- ▼ ページ番号 -->
+            <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+                <!-- 現在ページは active クラス -->
+                <a th:href="@{/profile/list(page=${i})}"
+                   th:text="${i}"
+                   th:classappend="${i == currentPage} ? ' active'"></a>
+            </span>
+
+            <a th:href="@{/profile/list(page=${currentPage + 1})}"
+               th:if="${currentPage < totalPages}">次 ›</a>
+
+            <a th:href="@{/profile/list(page=${totalPages})}">最後 »</a>
+        </div>
+    </div>
+
+    <!-- ▼▼ 一覧テーブル -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>性別</th>
+            <th>趣味</th>
+            <th>自己紹介</th>
+            <th>操作</th>
+        </tr>
+
+        <!-- ▼ eachで Profile をループ -->
+        <tr th:each="profile : ${profileList}">
+            <td th:text="${profile.id}"></td>
+
+            <!-- ▼ 名前クリック → 詳細 -->
+            <!-- ▼ ※修正ポイント：idパス変数対応 -->
+            <td class="name-cell">
+                <a th:href="@{'/profile/detail/' + ${profile.id}}"
+                   th:text="${profile.name}">
+                </a>
+            </td>
+
+            <td th:text="${profile.gender}"></td>
+            <td th:text="${profile.hobby}"></td>
+
+            <!-- ▼ ▼ 自己紹介省略表示（全文表示切替対応） -->
+            <td class="introduction-cell">
+
+                <!-- ▼ 〜50文字のみ表示 -->
+                <span class="abbreviated"
+                      th:text="${profile.introduction.length() > 50 ?
+                               profile.introduction.substring(0, 50) :
+                               profile.introduction}">
+                </span>
+
+                <!-- ▼ 50文字超えたら「...」表示 -->
+                <a href="#"
+                   class="show-more"
+                   onclick="showFullText(this); return false;"
+                   th:if="${profile.introduction.length() > 50}"
+                   style="display:inline;">...</a>
+
+                <!-- ▼ 全文 -->
+                <span class="full-text"
+                      th:text="${profile.introduction}"
+                      style="display:none;"></span>
+            </td>
+
+            <!-- ▼ 操作（編集 / 削除） -->
+            <td class="action-cell">
+                <div class="action-wrapper">
+                    <!-- 編集 -->
+                    <a class="operation"
+                       th:href="@{/profile/edit(id=${profile.id})}">編集</a>
+
+                    <span>|</span>
+
+                    <!-- 削除 -->
+                    <form th:action="@{/profile/delete}" method="post" style="display:inline">
+                        <input type="hidden" th:name="id" th:value="${profile.id}" />
+                        <button class="btn" type="submit">削除</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</main>
 </body>
-
 </html>

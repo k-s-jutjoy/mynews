@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール詳細</title>
+    <link rel="stylesheet" th:href="@{/css/profile/detail.css}">
+</head>
+<body>
+<main layout:fragment="contents">
+    <div class="wrapper">
+        <h1>プロフィール詳細</h1>
+
+        <ul class="form-ul">
+
+            <li>
+                <div class="form-body">
+                    <span class="title">名前</span>
+                    <div class="input-area value" th:text="${profile.name}"></div>
+                </div>
+            </li>
+
+            <li>
+                <div class="form-body">
+                    <span class="title">性別</span>
+                    <div class="input-area value" th:text="${profile.gender}"></div>
+                </div>
+            </li>
+
+            <li>
+                <div class="form-body">
+                    <span class="title">趣味</span>
+                    <div class="input-area value" th:text="${profile.hobby}"></div>
+                </div>
+            </li>
+
+            <li>
+                <div class="form-body">
+                    <span class="title">自己紹介</span>
+                    <div class="textarea value" th:text="${profile.introduction}"></div>
+                </div>
+            </li>
+
+        </ul>
+
+		<div class="btn-area">
+			<a th:href="@{/profile/edit(id=${profile.id})}" class="btn" style="background-color:#4e77ff;">編集</a>
+		    <a th:href="@{/profile/list}" class="btn">戻る</a>
+		</div>
+    </div>
+</main>
+</body>
+</html>
