@@ -121,9 +121,11 @@ td, th {
 }
 
 .name-cell a {
-    display: inline-block;
-    cursor: pointer;
-    z-index: 10;
-    position: relative;
+    display: inline;   /* inline-block → inline */
+    padding: 0;        /* ボタン風余白削除 */
+    margin: 0;
+    line-height: normal;
+    font-size: inherit;
+    text-decoration: underline; /* 既存仕様調整（なければ削除可） */
+    color: inherit;
 }
-
