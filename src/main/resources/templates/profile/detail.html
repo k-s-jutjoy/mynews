@@ -12,6 +12,12 @@
     <div class="wrapper">
         <h1>プロフィール詳細</h1>
 
+        <!-- ★ 完了メッセージ表示（作成／編集共通）-->
+        <!-- RedirectAttributes で message を受け取った場合のみ表示 -->
+        <div th:if="${message}" class="alert alert-success">
+            <span th:text="${message}"></span>
+        </div>
+
         <ul class="form-ul">
 
             <li>
