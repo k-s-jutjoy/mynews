@@ -4,20 +4,38 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link th:href="@{/css/profile/list.css}" rel="stylesheet">
+	<link th:href="@{/css/profile/list.css}" rel="stylesheet">　<!-- 一覧専用CSS -->
 	<title>プロフィール一覧</title>
 	<script>
-		function showFullText(element) {
+		function showFullText(element) {　 // ... を押すと全文表示
 			const parent = element.parentElement;
-			parent.querySelector('.abbreviated').style.display = 'none';
-			parent.querySelector('.full-text').style.display = 'inline';
-			element.style.display = 'none';
+			parent.querySelector('.abbreviated').style.display = 'none';　 // 短縮を非表示
+			parent.querySelector('.full-text').style.display = 'inline';　// 全文表示
+			element.style.display = 'none';　// ... 非表示
+		}
+	</script>
+
+	<script>
+		function showFullText(el) {  // ... → 全文
+			const cell = el.closest('.introduction-cell');
+			cell.querySelector('.abbreviated').style.display = 'none';
+			cell.querySelector('.show-more').style.display = 'none';
+			cell.querySelector('.full-text').style.display = 'inline';
+			cell.querySelector('.show-less').style.display = 'inline';
+		}
+
+		function showLess(el) {  // 折り畳み → 短縮表示
+			const cell = el.closest('.introduction-cell');
+			cell.querySelector('.full-text').style.display = 'none';
+			cell.querySelector('.show-less').style.display = 'none';
+			cell.querySelector('.abbreviated').style.display = 'inline';
+			cell.querySelector('.show-more').style.display = 'inline';
 		}
 	</script>
 </head>
 
 <body>
-	<main layout:fragment="contents">
+	<main layout:fragment="contents">　
 		<div class="top-area">
 			<a th:href="@{/profile/create}" class="create-link">新規プロフィール作成</a>
 
@@ -51,20 +69,34 @@
 				<td th:text="${profile.name}"></td>
 				<td th:text="${profile.gender}"></td>
 				<td th:text="${profile.hobby}"></td>
+
 				<td class="introduction-cell">
+
+					<!-- 短縮表示 -->
 					<span class="abbreviated"
-						th:text="${profile.introduction.length() > 50 ? profile.introduction.substring(0,50) : profile.introduction}"></span>
+						th:text="${profile.introduction.length() > 50 ? profile.introduction.substring(0,50) : profile.introduction}">
+					</span>
+					<!-- 展開（全文 ↓） -->
 					<a href="#" class="show-more" onclick="showFullText(this); return false;"
-						th:if="${profile.introduction.length() > 50}" style="display:inline;">...</a>
+						th:if="${profile.introduction.length() > 50}">
+						  ⇩表示
+					</a>
+					<!-- 全文表示 -->
 					<span class="full-text" th:text="${profile.introduction}" style="display:none;"></span>
+
+					<!-- 折り畳み（格納 ↑） -->
+					<a href="#" class="show-less" onclick="showLess(this); return false;" style="display:none;">
+						⇧非表示
+					</a>
 				</td>
+
 				<td class="action-cell">
 					<div class="action-wrapper">
 						<a class="operation" th:href="@{/profile/edit(id=${profile.id})}">編集</a>
 						<span>|</span>
 						<form th:action="@{/profile/delete}" method="post" style="display:inline">
 							<input type="hidden" th:name="id" th:value="${profile.id}" />
-							<button class="btn" type="submit">削除</button>
+							<button class="btn" type="submit">削除</button>　<!-- POSTで削除 -->
 						</form>
 					</div>
 				</td>
