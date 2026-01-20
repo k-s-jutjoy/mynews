@@ -30,7 +30,7 @@ public class ProfileCreateForm {
 //		
 //	}
 
-
+    // GET/SET → Controller→Service間のデータ受け渡し
     public String getName() {
         return this.name;
     }

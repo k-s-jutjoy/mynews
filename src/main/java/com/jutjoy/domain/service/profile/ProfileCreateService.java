@@ -14,10 +14,10 @@ public class ProfileCreateService {
 
     public void create(ProfileCreateForm form) {
         Profile profile = new Profile();
-        profile.setName(form.getName());
-        profile.setGender(form.getGender());
-        profile.setHobby(form.getHobby());
-        profile.setIntroduction(form.getIntroduction());
+        profile.setName(form.getName()); // 名前
+        profile.setGender(form.getGender()); // 性別
+        profile.setHobby(form.getHobby()); // 趣味
+        profile.setIntroduction(form.getIntroduction()); // 自己紹介
         profileRepository.save(profile); // id は自動採番
     }
 }

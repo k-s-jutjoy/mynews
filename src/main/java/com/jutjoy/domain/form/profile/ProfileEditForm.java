@@ -6,7 +6,8 @@ import jakarta.validation.constraints.Size;
 
 public class ProfileEditForm {
 
-    private Integer id;
+    // 編集対象の識別子（hiddenで受け渡し）
+	private Integer id;
 
 	@NotEmpty(message = "名前を入力してください")
 	@Size(max = 20, message = "名前は20文字以内で入力してください")
@@ -23,7 +24,7 @@ public class ProfileEditForm {
 	@Size(max = 200, message = "自己紹介は200文字以内で入力してください")
 	private String introduction;
 
-    // getter / setter
+    // Controller⇔Service間のデータ受け渡し用
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
